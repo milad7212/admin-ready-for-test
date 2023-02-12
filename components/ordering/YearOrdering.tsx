@@ -25,11 +25,12 @@ function YearOrdering({setValue}) {
 
   const handelChange =(data)=>{
     setSelectedOption(data)
+    
     setValue(data?.value || 0)
     
   }
   return (
-    <div className="w-36">
+    <div className="w-40">
       <Select
       value={selectedOption}
       onChange={handelChange}

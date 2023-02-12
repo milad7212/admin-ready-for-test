@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Select from "react-select";
 
 export interface ColourOption {
@@ -22,15 +23,24 @@ export const colourOptions: readonly ColourOption[] = [
 //   </label>
 // );
 
-function FieldFilter() {
+function FieldFilter({setValue,value}) {
+  const [selectedOption, setSelectedOption] = useState(null)
+
+  const handelChange =(data)=>{
+    setSelectedOption(data)
+    setValue({...value, filter_field: data?.value || ''})
+    
+    
+  }
   return (
     <div className="w-52">
       <Select
+      value={selectedOption}
+      onChange={handelChange}
         className="basic-single"
         classNamePrefix="select"
         placeholder="رشته"
-      
-        isClearable={true}
+          isClearable={true}
         isRtl={true}
         isSearchable={true}
         name="color"

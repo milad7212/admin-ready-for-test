@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Select from "react-select";
 
 export interface ColourOption {
@@ -9,8 +10,6 @@ export const colourOptions: readonly ColourOption[] = [
   { value: "", label: "همه" },
   { value: true, label: "بله" },
   { value: false, label: "خیر" },
-  
- 
 ];
 
 // const Checkbox = ({ children, ...props }: JSX.IntrinsicElements["input"]) => (
@@ -20,14 +19,21 @@ export const colourOptions: readonly ColourOption[] = [
 //   </label>
 // );
 
-function ImageFilter() {
+function ImageFilter({ setValue, value }) {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handelChange = (data) => {
+    setSelectedOption(data);
+    setValue({ ...value, image: data?.value || "" });
+  };
   return (
     <div className="w-32">
       <Select
+        value={selectedOption}
+        onChange={handelChange}
         className="basic-single"
         classNamePrefix="select"
         placeholder="عکس"
-        
         isClearable={true}
         isRtl={true}
         isSearchable={true}

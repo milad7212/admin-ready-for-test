@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Select from "react-select";
 
 export interface ColourOption {
@@ -47,7 +48,6 @@ export const colourOptions: readonly ColourOption[] = [
   { value: "38", label: "38" },
   { value: "39", label: "39" },
   { value: "40", label: "40" },
- 
 ];
 
 // const Checkbox = ({ children, ...props }: JSX.IntrinsicElements["input"]) => (
@@ -57,14 +57,21 @@ export const colourOptions: readonly ColourOption[] = [
 //   </label>
 // );
 
-function BookFilter() {
+function BookFilter({ setValue, value }) {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handelChange = (data) => {
+    setSelectedOption(data);
+    setValue({ ...value, filter_book: data?.value || "" });
+  };
   return (
     <div className="w-32">
       <Select
+        value={selectedOption}
+        onChange={handelChange}
         className="basic-single"
         classNamePrefix="select"
         placeholder="کتاب"
-        
         isClearable={true}
         isRtl={true}
         isSearchable={true}

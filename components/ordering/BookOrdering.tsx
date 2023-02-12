@@ -20,7 +20,7 @@ export const colourOptions: readonly ColourOption[] = [
 //   </label>
 // );
 
-function NumberOrdering({ setValue }) {
+function BookOrdering({ setValue }) {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handelChange = (data) => {
@@ -34,7 +34,7 @@ function NumberOrdering({ setValue }) {
       onChange={handelChange}
         className="basic-single"
         classNamePrefix="select"
-        placeholder="شماره سوال"
+        placeholder="کتاب"
         
         isClearable={true}
         isRtl={true}
@@ -46,4 +46,4 @@ function NumberOrdering({ setValue }) {
   );
 }
 
-export default NumberOrdering;
+export default BookOrdering;

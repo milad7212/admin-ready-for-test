@@ -13,12 +13,22 @@ import YearOrdering from "components/ordering/YearOrdering";
 import MonthOrdering from "components/ordering/MonthOrdering";
 import NumberOrdering from "components/ordering/NumberOrdering";
 import axios from "axios";
+import BookOrdering from "components/ordering/BookOrdering";
 
 export default function Home() {
   const [allTest, setAllTest] = useState([]);
   const [orderYear, setOrderYear] = useState(0);
   const [orderMonth, setOrderMonth] = useState(0);
   const [orderBook, setOrderBook] = useState(0);
+  const [orderNumber, setOrderNumber] = useState(0);
+  const [filterParameter, setFilterParameter] = useState({
+    filter_field: "",
+    filter_subField: "",
+    filter_year: "",
+    filter_month: "",
+    filter_book: "",
+  });
+  console.log('filterParameter :>> ', filterParameter);
 
   useEffect(() => {
     async function fetchData() {
@@ -31,12 +41,13 @@ export default function Home() {
   }, []);
 
   const handelOrdering = async () => {
-    
     const { data } = await axios.get("http://localhost:3333/admin/test/order", {
       params: {
+        ...filterParameter,
         year: orderYear,
         month: orderMonth,
         book: orderBook,
+        number: orderNumber,
       },
     });
 
@@ -48,22 +59,27 @@ export default function Home() {
       <div className="flex gap-4 my-2 bg-gray-100 p-3 rounded-lg items-center">
         <p className="font-bold">فیلتر : </p>
         <div className="flex flex-1 justify-around">
-          <FieldFilter />
-          <SubFieldFilter />
-          <YearFilter />
-          <MonthFilter />
-          <BookFilter />
-          <ImageFilter />
+          <FieldFilter value={filterParameter} setValue={setFilterParameter}/>
+          <SubFieldFilter value={filterParameter} setValue={setFilterParameter}/>
+          <YearFilter value={filterParameter} setValue={setFilterParameter}/>
+          <MonthFilter value={filterParameter} setValue={setFilterParameter}/>
+          <BookFilter value={filterParameter} setValue={setFilterParameter}/>
+          <ImageFilter value={filterParameter} setValue={setFilterParameter}/>
+         
         </div>
       </div>
 
       <div className="flex gap-4 my-4 bg-gray-100 p-3 rounded-lg items-center">
         <p className="font-bold">مرتب سازی : </p>
-        <div className="flex flex-1 gap-4">
-          <YearOrdering setValue={setOrderYear} />
-          <MonthOrdering setValue={setOrderMonth} />
-          <NumberOrdering setValue={setOrderBook} />
-          <button onClick={handelOrdering} className="">
+        <div className="flex flex-1 gap-4 items-center">
+          <YearOrdering  setValue={setOrderYear} />
+          <MonthOrdering  setValue={setOrderMonth} />
+          <NumberOrdering  setValue={setOrderNumber} />
+          <BookOrdering  setValue={setOrderBook} />
+          <button
+            onClick={handelOrdering}
+            className=" mr-6 px-8 py-1 active:scale-95  bg-[#4299e1] text-white font-bold  border rounded-lg"
+          >
             اعمال
           </button>
         </div>

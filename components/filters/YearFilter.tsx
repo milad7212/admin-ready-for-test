@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Select from "react-select";
 
 export interface ColourOption {
@@ -33,10 +34,18 @@ export const colourOptions: readonly ColourOption[] = [
 //   </label>
 // );
 
-function YearFilter() {
+function YearFilter({ setValue, value }) {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handelChange = (data) => {
+    setSelectedOption(data);
+    setValue({ ...value, filter_year: data?.value || "" });
+  };
   return (
     <div className="w-32">
       <Select
+      value={selectedOption}
+      onChange={handelChange}
         className="basic-single"
         classNamePrefix="select"
         placeholder="سال"

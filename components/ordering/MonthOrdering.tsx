@@ -27,7 +27,7 @@ function MonthOrdering({ setValue }) {
     setValue(data?.value || 0);
   };
   return (
-    <div className="w-32">
+    <div className="w-40">
       <Select
         value={selectedOption}
         onChange={handelChange}
