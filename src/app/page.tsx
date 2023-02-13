@@ -14,6 +14,9 @@ import MonthOrdering from "components/ordering/MonthOrdering";
 import NumberOrdering from "components/ordering/NumberOrdering";
 import axios from "axios";
 import BookOrdering from "components/ordering/BookOrdering";
+import Input from "components/Input";
+import { FiEdit } from "react-icons/fi";
+import { AiOutlineDelete, AiFillPlusSquare } from "react-icons/ai";
 
 export default function Home() {
   const [allTest, setAllTest] = useState([]);
@@ -28,7 +31,6 @@ export default function Home() {
     filter_month: "",
     filter_book: "",
   });
-  console.log('filterParameter :>> ', filterParameter);
 
   useEffect(() => {
     async function fetchData() {
@@ -59,29 +61,34 @@ export default function Home() {
       <div className="flex gap-4 my-2 bg-gray-100 p-3 rounded-lg items-center">
         <p className="font-bold">فیلتر : </p>
         <div className="flex flex-1 justify-around">
-          <FieldFilter value={filterParameter} setValue={setFilterParameter}/>
-          <SubFieldFilter value={filterParameter} setValue={setFilterParameter}/>
-          <YearFilter value={filterParameter} setValue={setFilterParameter}/>
-          <MonthFilter value={filterParameter} setValue={setFilterParameter}/>
-          <BookFilter value={filterParameter} setValue={setFilterParameter}/>
-          <ImageFilter value={filterParameter} setValue={setFilterParameter}/>
-         
+          <FieldFilter value={filterParameter} setValue={setFilterParameter} />
+          <SubFieldFilter
+            value={filterParameter}
+            setValue={setFilterParameter}
+          />
+          <YearFilter value={filterParameter} setValue={setFilterParameter} />
+          <MonthFilter value={filterParameter} setValue={setFilterParameter} />
+          <BookFilter value={filterParameter} setValue={setFilterParameter} />
+          <ImageFilter value={filterParameter} setValue={setFilterParameter} />
         </div>
       </div>
 
       <div className="flex gap-4 my-4 bg-gray-100 p-3 rounded-lg items-center">
         <p className="font-bold">مرتب سازی : </p>
         <div className="flex flex-1 gap-4 items-center">
-          <YearOrdering  setValue={setOrderYear} />
-          <MonthOrdering  setValue={setOrderMonth} />
-          <NumberOrdering  setValue={setOrderNumber} />
-          <BookOrdering  setValue={setOrderBook} />
+          <YearOrdering setValue={setOrderYear} />
+          <MonthOrdering setValue={setOrderMonth} />
+          <NumberOrdering setValue={setOrderNumber} />
+          <BookOrdering setValue={setOrderBook} />
           <button
             onClick={handelOrdering}
             className=" mr-6 px-8 py-1 active:scale-95  bg-[#4299e1] text-white font-bold  border rounded-lg"
           >
             اعمال
           </button>
+          <div className="mr-auto font-black mx-4 text-xl">
+            {allTest.length}
+          </div>
         </div>
       </div>
 
@@ -111,7 +118,7 @@ export default function Home() {
           <>
             <div
               key={_id}
-              className="grid grid-cols-[1fr_100px]  bg-[#d3d3d3] shadow-md font-bold text-[#333333]  rounded-lg my-4 p-3"
+              className="grid grid-cols-[1fr_100px] relative  bg-[#d3d3d3] shadow-md font-bold text-[#333333]  rounded-lg my-6 p-3"
             >
               <div className="">
                 <div className="my-3 flex items-center">
@@ -157,6 +164,13 @@ export default function Home() {
                 <p className="bg-gray-200 p-2 rounded-lg shadow-sm text-center">
                   {month}
                 </p>
+              </div>
+              <div className="flex pr-4 items-center gap-8">
+                <FiEdit size={20} className="cursor-pointer hover:scale-95 active:scale-125 duration-200" />
+                <AiOutlineDelete size={20} className="cursor-pointer  hover:scale-95 active:scale-125 duration-200" />
+              </div>
+              <div className="absolute -bottom-4 left-0 right-0 flex justify-center">
+                <AiFillPlusSquare size={30} className="text-gray-500 cursor-pointer  hover:scale-95 active:scale-125 duration-200" />
               </div>
             </div>
           </>
