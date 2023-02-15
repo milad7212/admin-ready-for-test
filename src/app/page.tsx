@@ -62,6 +62,10 @@ export default function Home() {
     setAllTest(data);
   };
 
+  const deleteTest = async (id) =>{
+    const {data} = axios.delete(`http://localhost:3333/admin/test/delete/${id}`)
+  }
+
   return (
     <>
     <div className="p-4 px-6 bg-gray-200">
@@ -157,11 +161,11 @@ export default function Home() {
               <div className="flex pr-4 items-center gap-8">
                 <FiEdit onClick={()=>{
                   setDataForEdit({show:true,data})}} size={20} className="cursor-pointer hover:scale-95 active:scale-125 duration-200" />
-                <AiOutlineDelete size={20} className="cursor-pointer  hover:scale-95 active:scale-125 duration-200" />
+                <AiOutlineDelete onClick={()=>deleteTest(data._id)} size={20} className="cursor-pointer  hover:scale-95 active:scale-125 duration-200" />
               </div>
-              <div className="absolute -bottom-4 left-0 right-0 flex justify-center">
+              {/* <div className="absolute -bottom-4 left-0 right-0 flex justify-center">
                 <AiFillPlusSquare size={30} className="text-gray-500 cursor-pointer  hover:scale-95 active:scale-125 duration-200" />
-              </div>
+              </div> */}
               
             </div>
           </>
