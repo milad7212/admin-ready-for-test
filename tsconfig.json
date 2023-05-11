@@ -24,6 +24,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/filters/YearFilter.jsx", "components/filters/SubFieldFilter.jsx", "components/filters/MonthFilter.jsx", "components/filters/ImageFilter.jsx", "components/filters/FieldFilter.jsx", "components/filters/BookFilter.jsx", "components/ordering/YearOrdering.jsx", "components/ordering/NumberOrdering.jsx", "components/ordering/MonthOrdering.jsx", "components/ordering/BookOrdering.jsx", "components/Input.jsx", "components/EditTest.jsx"],
   "exclude": ["node_modules"]
 }

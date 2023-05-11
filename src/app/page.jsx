@@ -39,7 +39,7 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchData() {
-      const { data: allTest }: any = await getAllTest();
+      const { data: allTest } = await getAllTest();
 
       setAllTest(allTest);
     }
