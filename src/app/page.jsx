@@ -52,7 +52,7 @@ export default function Home() {
 
   const handelOrdering = async () => {
     const { data } = await axios.get(
-      "http://node.readyfortest.ir/admin/test/order",
+      "https://node.readyfortest.ir/admin/test/order",
       {
         params: {
           ...filterParameter,
@@ -69,7 +69,7 @@ export default function Home() {
 
   const deleteTest = async (id) => {
     const { data } = axios.delete(
-      `http://node.readyfortest.ir/admin/test/delete/${id}`
+      `https://node.readyfortest.ir/admin/test/delete/${id}`
     );
   };
 
