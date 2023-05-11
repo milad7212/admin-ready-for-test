@@ -28,12 +28,12 @@ function EditTest({ data, closePanel }) {
   } = data;
 
   const updateTest = async (id, newData) => {
-    let url = `https://node.readyfortest.ir/admin/test/update/${id}`;
+    let url = `http://node.readyfortest.ir/admin/test/update/${id}`;
     const { data } = await axios.put(url, newData);
   };
   
   const buildNewTest = async (dataBuild) => {
-    let url = `https://localhost:3333/admin/test/add`;
+    let url = `http://localhost:3333/admin/test/add`;
     const { data } = await axios.post(url, dataBuild);
     closePanel();
   };
