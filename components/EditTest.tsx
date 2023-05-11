@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { FiEdit } from "react-icons/fi";
-import {
-  AiOutlineDelete,
-  AiFillPlusSquare,
-  AiFillCloseCircle,
-} from "react-icons/ai";
-import classNames from "classnames";
-
+import { AiOutlineDelete, AiFillCloseCircle } from "react-icons/ai";
+import Cropper from 'react-easy-crop'
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
 function EditTest({ data, closePanel }) {
+  const [imageTest, setImageTest] = useState(null)
   const {
     _id,
     question,
@@ -32,9 +28,10 @@ function EditTest({ data, closePanel }) {
   } = data;
 
   const updateTest = async (id, newData) => {
-    let url = `http://localhost:3333/admin/test/update/${id}`;
+    let url = `http://node.readyfortest.ir/admin/test/update/${id}`;
     const { data } = await axios.put(url, newData);
   };
+  
   const buildNewTest = async (dataBuild) => {
     let url = `http://localhost:3333/admin/test/add`;
     const { data } = await axios.post(url, dataBuild);
@@ -59,7 +56,7 @@ function EditTest({ data, closePanel }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="fixed z-50 left-0 right-0 top-0 bottom-0 bg-gray-400 flex justify-center overflow-y-auto ">
+      <div className="fixed z-50 left-0 right-0 top-0 bg-gray-400 flex  min-h-screen justify-center overflow-y-auto ">
         <div className="grid grid-cols-[1fr_100px] gap-2 relative w-2/3  bg-[#d3d3d3] shadow-md font-bold text-[#333333]  rounded-lg my-6 p-3">
           <div className="">
             <textarea
@@ -124,8 +121,8 @@ function EditTest({ data, closePanel }) {
                 {...register("book")}
               />
             </div>
-            <div className="">
-              <select {...register("correctAnswer")}>
+            <div className="mt-2">
+              <select className="p-2 rounded-lg" {...register("correctAnswer")}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -176,6 +173,11 @@ function EditTest({ data, closePanel }) {
               defaultValue={subField}
               {...register("subField")}
             />
+            <input
+            type="file"
+            onChange={e=>setImageTest(e.target.files[0])}
+            />
+            {imageTest && <Cropper image={imageTest}/>}
           </div>
           <div className="flex pr-4 items-center gap-8">
             <FiEdit
@@ -200,12 +202,6 @@ function EditTest({ data, closePanel }) {
                 جدید
               </button>
             </div>
-          </div>
-          <div className="absolute -bottom-4 left-0 right-0 flex justify-center">
-            <AiFillPlusSquare
-              size={30}
-              className="text-gray-500 cursor-pointer  hover:scale-95 active:scale-125 duration-200"
-            />
           </div>
         </div>
         <div className=" absolute top-5 left-5">

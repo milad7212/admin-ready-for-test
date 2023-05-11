@@ -49,7 +49,7 @@ export default function Home() {
   }
 
   const handelOrdering = async () => {
-    const { data } = await axios.get("http://localhost:3333/admin/test/order", {
+    const { data } = await axios.get("http://node.readyfortest.ir/admin/test/order", {
       params: {
         ...filterParameter,
         year: orderYear,
@@ -63,7 +63,8 @@ export default function Home() {
   };
 
   const deleteTest = async (id) =>{
-    const {data} = axios.delete(`http://localhost:3333/admin/test/delete/${id}`)
+    const { data } = axios.delete(`http://node.readyfortest.ir/admin/test/delete/${id}`
+    );
   }
 
   return (

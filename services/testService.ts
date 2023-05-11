@@ -1,6 +1,6 @@
 import axios  from "axios";
 
-const BASE_URL = "http://localhost:3333";
+const BASE_URL = "http://node.readyfortest.ir";
 
 export const getAllTest = () => {
     const url =`${BASE_URL}/admin/test/all`;
