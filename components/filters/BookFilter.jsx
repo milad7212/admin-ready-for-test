@@ -1,12 +1,8 @@
 import { useState } from "react";
 import Select from "react-select";
 
-export interface ColourOption {
-  readonly value: string;
-  readonly label: string;
-}
 
-export const colourOptions: readonly ColourOption[] = [
+export const colourOptions = [
   { value: "", label: "همه" },
   { value: "1", label: "1" },
   { value: "2", label: "2" },
